@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>❤️ رسالة إلى حنين ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Cairo,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ff5f9e,#ffb6c1);
+height:100vh;
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+#hearts{
+position:fixed;
+width:100%;
+height:100%;
+pointer-events:none;
+}
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:fall linear forwards;
+}
+
+@keyframes fall{
+0%{
+transform:translateY(-50px);
+opacity:1;
+}
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+}
+
+.envelope{
+width:320px;
+height:220px;
+background:#fff;
+border-radius:12px;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+cursor:pointer;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+transition:.6s;
+}
+
+.envelope:hover{
+transform:scale(1.05);
+}
+
+.card{
+display:none;
+background:#fff;
+width:90%;
+max-width:650px;
+height:85vh;
+overflow:auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+text-align:center;
+}
+
+h1{
+color:#ff2f7d;
+margin-bottom:20px;
+}
+
+#text{
+font-size:20px;
+line-height:2;
+color:#444;
+white-space:pre-wrap;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+background:#ff2f7d;
+color:#fff;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-size:18px;
+}
+
+.counter{
+margin-top:20px;
+font-size:22px;
+color:#ff2f7d;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="hearts"></div>
+
+<div class="envelope" id="env" onclick="openLetter()">
+<h2>💌 رسالة خاصة</h2>
+<br>
+<p>إلى حنين ❤️</p>
+<br>
+<p>اضغطي هنا</p>
+</div>
+
+<div class="card" id="card">
+
+<h1>❤️ إلى حنين ❤️</h1>
+
+<div id="text"></div>
+
+<button onclick="playSong()">🎵 تشغيل الأغنية</button>
+
+<div id="music"></div>
+
+<div class="counter" id="days"></div>
+<h2 style="color:#ff2f7d;margin-top:30px;">📸 ذكرياتنا ❤️</h2>
+
+<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:15px;">
+    <img src="images/1.jpg" style="width:150px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.3);">
+    <img src="images/2.jpg" style="width:150px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.3);">
+    <img src="images/3.jpg" style="width:150px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.3);">
+</div>
+<h2 style="margin-top:30px;color:#ff2f7d;">
+Made with ❤️ by Abdullah
+</h2>
+
+</div>
+
+<script>
+
+const message=`من أول يوم دخلتي فيه حياتي، وأنا حسيت إن الدنيا بقت أجمل.
+
+كل لحظة معاكي ليها معنى، وكل ضحكة منك بتخليني أنسى أي تعب. وجودك في حياتي نعمة كبيرة، وأتمنى أفضل دايمًا سبب في ابتسامتك.
+
+يمكن الكلمات ما تقدرش توصف كل اللي جوايا، لكن يكفيني أقول إني بحبك من كل قلبي، وبشكر ربنا إنه جمعني بيكي.
+
+وعمري ما بطلت أحبك بسبب مشكلة أو خناقة، بالعكس... كل يوم بيعدي بحبك أكتر من اليوم اللي قبله.
+
+وإنتِ مش حبيبتي وبس... إنتِ أختي، وصاحبتي، وسندي، وكل حاجة حلوة في حياتي.
+
+كل اللي عايزك تعرفيه هو إني بحبك، وبموت فيكي والله.
+
+ولو زعلتك في يوم... فحقك عليا يا روحي ❤️
+
+ومهما حصل بينا...
+هفضل أحبك...
+وهفضل أختارك كل يوم من جديد.
+
+بحبككككككك 😍❤️❤️❤️❤️❤️❤️❤️❤️❤️
+
+عبدالله ❤️`;
+
+function openLetter(){
+
+document.getElementById("env").style.display="none";
+document.getElementById("card").style.display="block";
+
+typeText();
+
+}
+
+let i=0;
+
+function typeText(){
+
+if(i<message.length){
+
+document.getElementById("text").innerHTML+=message.charAt(i);
+
+i++;
+
+setTimeout(typeText,35);
+
+}
+
+}
+
+function playSong(){
+
+document.getElementById("music").innerHTML=
+`<iframe width="320" height="180"
+src="https://www.youtube.com/embed/wrC_90mngK4?autoplay=1"
+allow="autoplay"
+allowfullscreen>
+</iframe>`;
+
+}
+
+function hearts(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.animationDuration=(3+Math.random()*3)+"s";
+
+document.getElementById("hearts").appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},6000);
+
+}
+
+setInterval(hearts,250);
+
+const start = new Date("2025-12-19");
+const now = new Date();
+
+let days = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+
+if (days < 0) {
+    document.getElementById("days").innerHTML =
+        "❤️ باقي " + Math.abs(days) + " يوم على يومنا ❤️";
+} else {
+    document.getElementById("days").innerHTML =
+        "❤️ بقالنا " + days + " يوم ❤️";
+}
+</script>
+
+</body>
+</html>
